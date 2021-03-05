@@ -19,6 +19,8 @@ Inside of an EditForm reference the editor component and bind it.
 
 ```
 <EditForm OnValidSubmit="DoSave" Model="model">
-  <MarkdownEditor @bin
+  <MarkdownEditor @bind-Value="model.Comments"/>
 </EditForm>
 ```
+
+The editor binds the markdown text, not parsed HTML.
