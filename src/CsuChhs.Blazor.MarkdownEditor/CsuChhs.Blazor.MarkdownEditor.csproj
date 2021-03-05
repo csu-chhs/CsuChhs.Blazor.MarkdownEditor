@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>CHHS Application Development Team</Authors>
+    <Version>1.0.0-alpha</Version>
+    <PackageProjectUrl>https://github.com/csu-chhs/CsuChhs.Blazor.MarkdownEditor</PackageProjectUrl>
+    <Company>College of Health and Human Sciences</Company>
+    <PackageId>CsuChhs.Blazor.MarkdownEditor</PackageId>
+    <PackageDescription>A live preview markdown editor for Blazor</PackageDescription>
+    <RepositoryUrl>https://github.com/csu-chhs/CsuChhs.Blazor.MarkdownEditor</RepositoryUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.12" />
+    <PackageReference Include="Markdig" Version="0.23.0"/>
+  </ItemGroup>
+
+</Project>

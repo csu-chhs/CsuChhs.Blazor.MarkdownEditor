@@ -1,0 +1,167 @@
+@using System.Linq.Expressions
+<div id="markdownEditor">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#write" aria-controls="write" role="tab" data-toggle="tab">Write</a></li>
+        <li role="presentation"><a href="#preview" aria-controls="preview" role="tab" data-toggle="tab">Preview</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="write" style="padding-top: 12px;">
+            <textarea value="@Value" @oninput="HandleInput" rows="@_rows" class="@_fieldCssClasses form-control"></textarea>
+            <span class="text-muted">Learn more about MarkDown <a href="" @onclick:preventDefault @onclick="() => HandleHelpClick()">here.</a></span>
+            @if (showHelp)
+            {
+                <div class="alert alert-info" role="alert">
+                    <h4>Markdown Basics</h4>
+                    <p class="mb-2">Markdown is a lightweight markup language for creating formatted text
+                        using a plain text editor.  For more information and syntax, view the 
+                        <a href="https://www.markdownguide.org/basic-syntax/" target="_blank">markdown guide</a></p>
+                    <table class="table">
+                        <tr>
+                            <th>Element</th>
+                            <th>Markdown Syntax</th>
+                        </tr>
+                        <tr>
+                            <td>Headings</td>
+                            <td>
+                                <code>
+                                    # H1 <br/>
+                                    ## H2 <br/>
+                                    ### H3
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Bold</td>
+                            <td>
+                                <code>
+                                    **bold text**
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Italic</td>
+                            <td>
+                                <code>*italic text*</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Blockquote</td>
+                            <td>
+                                <code>
+                                    > blockquote
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ordered List</td>
+                            <td>
+                                <code>
+                                    1. Item One<br/>
+                                    2. Item Two<br/>
+                                    3. Item Three
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Unordered List</td>
+                            <td>
+                                <code>
+                                    - Item one<br/>
+                                    - Item two<br/>
+                                    - Item three
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Code</td>
+                            <td>
+                                <code>
+                                    `code`
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Horizontal Rule</td>
+                            <td>
+                                <code>
+                                    ---
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Link</td>
+                            <td>
+                                <code>[title](https://www.example.com)</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Image</td>
+                            <td>
+                                <code>
+                                    ![alt text](image.jpg)
+                                </code>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="button" class="btn btn-sm btn-secondary" @onclick:preventDefault @onclick="() => HandleCloseHelpClick()">Close Help</button>
+                </div>
+            }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="preview" style="padding-top: 12px;">
+            @((MarkupString) previewText)
+        </div>
+    </div>
+    
+</div>
+
+@code {
+    private FieldIdentifier _fieldIdentifier;
+    private string _fieldCssClasses => CascadedEditContext?.FieldCssClass(_fieldIdentifier) ?? "";
+
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    [Parameter]
+    public Expression<Func<string>> ValueExpression { get; set; }
+
+    [CascadingParameter]
+    private EditContext CascadedEditContext { get; set; }
+
+    private string previewText = "";
+    private int _rows = 6;
+    private bool showHelp = false;
+    protected override void OnInitialized()
+    {
+        _fieldIdentifier = FieldIdentifier.Create(ValueExpression);
+    }
+
+    private void CalculateSize(string value)
+    {
+        _rows = Math.Max(value.Split('\n').Length, value.Split('\r').Length);
+        _rows = Math.Max(_rows, 6);
+    }
+
+    private void HandleHelpClick()
+    {
+        showHelp = true;
+    }
+
+    private void HandleCloseHelpClick()
+    {
+        showHelp = false;
+    }
+
+    private async Task HandleInput(ChangeEventArgs args)
+    {
+        CalculateSize(args.Value.ToString());
+
+        await ValueChanged.InvokeAsync(args.Value.ToString());
+
+        CascadedEditContext?.NotifyFieldChanged(_fieldIdentifier);
+        previewText = MarkdownParser.Parse(args.Value.ToString());
+    }
+
+}
