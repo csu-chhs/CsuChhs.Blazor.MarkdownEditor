@@ -1,0 +1,21 @@
+@page "/"
+@using ControlsExample.Forms
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+
+<EditForm OnValidSubmit="DoSave" Model="form">
+<MarkdownEditor @bind-Value="form.Comment"/>
+</EditForm>
+
+@code {
+    CommentForm form = new CommentForm();
+
+    private void DoSave()
+    {
+
+    }
+}
