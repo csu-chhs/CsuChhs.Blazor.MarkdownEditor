@@ -161,6 +161,8 @@
 
     private async Task HandleInput(ChangeEventArgs args)
     {
+        CalculateSize(args.Value.ToString());
+        
         await ValueChanged.InvokeAsync(args.Value.ToString());
         
         CascadedEditContext?.NotifyFieldChanged(_fieldIdentifier);
