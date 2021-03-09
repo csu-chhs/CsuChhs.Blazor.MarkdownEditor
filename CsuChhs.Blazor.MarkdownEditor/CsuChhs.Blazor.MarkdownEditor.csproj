@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -11,9 +11,9 @@
     <PackageDescription>A live preview markdown editor for Blazor</PackageDescription>
     <RepositoryUrl>https://github.com/csu-chhs/CsuChhs.Blazor.MarkdownEditor</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RazorLangVersion>3.0</RazorLangVersion>
   </PropertyGroup>
 
-  
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
