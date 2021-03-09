@@ -1,0 +1,16 @@
+@_renderedMarkdown
+
+@code {
+    [Parameter]
+    public string MarkdownContent { get; set; }
+
+    private string _renderedMarkdown = "";
+
+    protected override void OnParametersSet()
+    {
+        if(!string.IsNullOrEmpty(MarkdownContent))
+        {
+            _renderedMarkdown = MarkdownParser.Parse(MarkdownContent);
+        }
+    }
+}
