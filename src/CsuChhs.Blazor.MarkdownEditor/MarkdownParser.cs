@@ -2,9 +2,9 @@ using Markdig;
 
 namespace CsuChhs.Blazor.MarkdownEditor
 {
-    public static class MarkdownParser
+    internal static class MarkdownParser
     {
-        public static string Parse(string value)
+        internal static string Parse(string value)
         {
             if(!string.IsNullOrEmpty(value))
             {
