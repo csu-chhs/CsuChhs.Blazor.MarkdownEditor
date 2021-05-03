@@ -24,3 +24,6 @@ Inside of an EditForm reference the editor component and bind it.
 ```
 
 The editor binds the markdown text, not parsed HTML.
+
+The toolbar (work in progress) is added by default.  You can disable
+this by passing EnableToolbar="false" into the component.
