@@ -21,7 +21,7 @@
     <div class="tab-content" id="editorTabContent">
         <div class="tab-pane fade show active" id="editor" role="tabpanel" aria-labelledby="editor-tab">
             
-            <textarea value="@Value" @oninput="HandleInput" class="@_fieldCssClasses form-control" rows="@_rows"></textarea>
+            <textarea id="@id" value="@Value" @oninput="HandleInput" class="@_fieldCssClasses form-control" rows="@_rows"></textarea>
             <span class="text-muted">Learn more about MarkDown <a href="" @onclick:preventDefault @onclick="() => HandleHelpClick()">here.</a></span>
             @if (showHelp)
             {
@@ -142,6 +142,9 @@
 
     [Parameter]
     public bool EnableToolbar { get; set; } = true;
+
+    [Parameter]
+    public string id { get; set; }
 
     [CascadingParameter]
     private EditContext CascadedEditContext { get; set; }
