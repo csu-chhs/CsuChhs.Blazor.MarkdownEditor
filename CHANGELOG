@@ -1,4 +1,7 @@
 ### Changelog
 
+#### 1.1.1
+- Add ID to component
+
 #### 1.1.0
 - Added basic toolbar (Bold, Italic, UO List)
