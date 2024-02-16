@@ -9,7 +9,7 @@ as an embeded help guide for users.
 
 ### Usage
 
-Install via nuget from https://www.nuget.org/packages/CsuChhs.Blazor.MarkdownEditor/
+Install via [nuget](https://www.nuget.org/packages/CsuChhs.Blazor.MarkdownEditor/)
 
 Add the Editor to your ```_Imports.razor```
 
