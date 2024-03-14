@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
-    <PackageReference Include="Markdig" Version="0.35.0" />
+    <PackageReference Include="Markdig" Version="0.36.0" />
   </ItemGroup>
 	<ItemGroup>
 		<None Include="../README.md" Pack="true" PackagePath="\"/>
