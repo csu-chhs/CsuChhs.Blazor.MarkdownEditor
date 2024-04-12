@@ -5,7 +5,7 @@
 	  <ImplicitUsings>enable</ImplicitUsings> 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>CHHS Application Development Team</Authors>
-    <Version>2.0.1</Version>
+    <Version>2.0.2</Version>
     <PackageProjectUrl>https://github.com/csu-chhs/CsuChhs.Blazor.MarkdownEditor</PackageProjectUrl>
     <Company>College of Health and Human Sciences</Company>
     <PackageId>CsuChhs.Blazor.MarkdownEditor</PackageId>
@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.3" />
-    <PackageReference Include="Markdig" Version="0.36.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.*" />
+    <PackageReference Include="Markdig" Version="0.36.*" />
   </ItemGroup>
 	<ItemGroup>
 		<None Include="../README.md" Pack="true" PackagePath="\"/>
