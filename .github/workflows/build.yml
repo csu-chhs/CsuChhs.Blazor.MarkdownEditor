@@ -15,7 +15,7 @@ jobs:
         dotnet-version: '8'     
 
     - name: Restore
-      run: dotnet restore RamTrac.sln
+      run: dotnet restore
     
     - name: Build with dotnet
       run: dotnet build --no-restore
