@@ -13,8 +13,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8'     
-    - name: Setup NuGet Sources
-      run: dotnet nuget add source https://nuget.pkg.github.com/csu-chhs/index.json --name "GitHub" --store-password-in-clear-text --username dstegelman --password "${{ secrets.DEREK_TOKEN }}"
 
     - name: Restore
       run: dotnet restore RamTrac.sln
