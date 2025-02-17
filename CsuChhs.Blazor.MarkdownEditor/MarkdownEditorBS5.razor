@@ -1,4 +1,7 @@
 ﻿@using System.Linq.Expressions
+@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+@implements IAsyncDisposable
 <div id="markdownEditor">
     <ul class="nav nav-tabs mb-3" id="editorTabs" role="tablist">
         <li class="nav-item" role="presentation">
@@ -157,9 +160,36 @@
     private FieldIdentifier _fieldIdentifier;
     private string _fieldCssClasses => CascadedEditContext?.FieldCssClass(_fieldIdentifier) ?? "";
 
+    ElementReference dropZoneElement;
+    InputFile inputFile;
+    IJSObjectReference _module;
+    IJSObjectReference _dropZoneInstance;
+    string src;
+    
     protected override void OnInitialized()
     {
         _fieldIdentifier = FieldIdentifier.Create(ValueExpression);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./dropZone.js");
+
+            _dropZoneInstance = await _module.InvokeAsync<IJSObjectReference>("initializeFileDropZone", dropZoneElement, inputFile.Element);
+        }
+        
+    }
+
+    private async Task OnChange(InputFileChangeEventArgs e)
+    {
+        
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        
     }
 
     private void CalculateSize(string value)
