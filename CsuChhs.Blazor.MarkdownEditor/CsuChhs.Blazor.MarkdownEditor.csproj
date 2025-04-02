@@ -5,7 +5,7 @@
 	  <ImplicitUsings>enable</ImplicitUsings> 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>CHHS Application Development Team</Authors>
-    <Version>2.0.3</Version>
+    <Version>2.0.4</Version>
     <PackageProjectUrl>https://github.com/csu-chhs/CsuChhs.Blazor.MarkdownEditor</PackageProjectUrl>
     <Company>College of Health and Human Sciences</Company>
     <PackageId>CsuChhs.Blazor.MarkdownEditor</PackageId>
