@@ -10,9 +10,9 @@
         @if (EnableToolbar)
         {
             <li class="nav-item ml-auto">
-                <button class="btn btn-sm btn-secondary" @onclick:preventDefault @onclick="() => HandleBoldClick()"><i class="fas fa-bold"></i></button>
-                <button class="btn btn-sm btn-secondary" @onclick:preventDefault @onclick="() => HandleItalicClick()"><i class="fas fa-italic"></i></button>
-                <button class="btn btn-sm btn-secondary" @onclick:preventDefault @onclick="() => HandleListClick()"><i class="fas fa-list"></i></button>
+                <button aria-label="Bold Button" class="btn btn-sm btn-secondary" @onclick:preventDefault @onclick="() => HandleBoldClick()"><i class="fas fa-bold"></i></button>
+                <button aria-label="Italic Button" class="btn btn-sm btn-secondary" @onclick:preventDefault @onclick="() => HandleItalicClick()"><i class="fas fa-italic"></i></button>
+                <button aria-label="List Button" class="btn btn-sm btn-secondary" @onclick:preventDefault @onclick="() => HandleListClick()"><i class="fas fa-list"></i></button>
             </li>
         }
 
